@@ -24,3 +24,6 @@ class Quiz(models.Model):
     r6_category = models.CharField(max_length=200)
     r7_category = models.CharField(max_length=200)
     r8_category = models.CharField(default='random', max_length=200)
+
+    def __str__(self):
+        return str(self.created_at)

@@ -1,0 +1,62 @@
+a,
+a:visited,
+a:link {
+  color: #a5d2c1;
+}
+#header a:hover,
+a:hover,
+a:focus {
+  color: #b5e8d5;
+}
+
+#header {
+  height: 50px;
+  background: #2f2f2f;
+  color: #b5e8d5;
+}
+
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited {
+  color: #fafafa;
+}
+
+#content-main .module table caption {
+  background: #2f2f2f;
+}
+
+div.breadcrumbs {
+  background: #a5d2c1;
+  color: #d5eee5;
+}
+
+.addlink,
+.addlink:visited {
+  color: #447e9b;
+}
+
+.button.default,
+input[type='submit'].default,
+.button.default:active,
+input[type='submit'].default:active,
+.button.default:focus,
+input[type='submit'].default:focus {
+  background: #a5d2c1;
+}
+.button.default:hover,
+input[type='submit'].default:hover {
+  background: #b5e8d5;
+}
+
+.button,
+input[type='submit'],
+input[type='button'],
+.submit-row input,
+a.button {
+  background: #b5e8d5;
+  color: #2f2f2f;
+}
+
+.submit-row input:hover {
+  background: #a5d2c1;
+}
