@@ -26,4 +26,7 @@ class Quiz(models.Model):
     r8_category = models.CharField(default='random', max_length=200)
 
     def __str__(self):
-        return str(self.created_at)
+        unformatted_date = str(self.created_at).split(' ')[0]
+        split_date = unformatted_date.split('-')
+        date = split_date[1] + '-' + split_date[2] + '-' + split_date[0]
+        return date
