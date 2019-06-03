@@ -1,10 +1,13 @@
 from rest_framework import serializers, viewsets
 from .models import Score
 from quizzes.models import Quiz
-from teams.models import Team
+# from teams.api import TeamSerializer
 
 
-class ScoreSerializer(serializers.HyperlinkedModelSerializer):
+class ScoreSerializer(serializers.ModelSerializer):
+    team = serializers.StringRelatedField(read_only=True)
+    quiz = serializers.StringRelatedField(read_only=True)
+
     class Meta:
         model = Score
         fields = ('__all__')

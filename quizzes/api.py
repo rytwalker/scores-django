@@ -1,8 +1,11 @@
 from rest_framework import serializers, viewsets
 from .models import Quiz
+from scores.api import ScoreSerializer
 
 
-class QuizSerializer(serializers.HyperlinkedModelSerializer):
+class QuizSerializer(serializers.ModelSerializer):
+    scores = ScoreSerializer(many=True, read_only=True)
+
     class Meta:
         model = Quiz
         fields = ('__all__')

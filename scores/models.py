@@ -7,8 +7,10 @@ from quizzes.models import Quiz
 
 class Score(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    team = models.ForeignKey(
+        Team, related_name='scores', on_delete=models.CASCADE)
+    quiz = models.ForeignKey(
+        Quiz, related_name='scores', on_delete=models.CASCADE)
     created_at = models.DateTimeField()
     modified_at = models.DateTimeField(auto_now=True)
     total_points_scored = models.PositiveSmallIntegerField(default=0)
