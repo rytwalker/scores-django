@@ -26,4 +26,4 @@ class Score(models.Model):
     won_tiebreaker = models.BooleanField(blank=True)
 
     def __str__(self):
-        return str(id)
+        return f"{str(self.team)} on {str(self.quiz)}"
