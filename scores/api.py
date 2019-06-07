@@ -15,4 +15,4 @@ class ScoreSerializer(serializers.ModelSerializer):
 
 class ScoreViewSet(viewsets.ModelViewSet):
     serializer_class = ScoreSerializer
-    queryset = Score.objects.all()
+    queryset = Score.objects.all().order_by('-total_points_scored')
