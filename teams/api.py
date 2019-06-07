@@ -2,7 +2,7 @@ from rest_framework import serializers, viewsets
 from .models import Team
 from scores.api import ScoreSerializer
 from django.db.models.functions import Cast
-from django.db.models import Avg, Q, FloatField, Sum, Count, Max
+from django.db.models import Avg, Q, IntegerField, FloatField, Sum, Count, Max
 
 
 class TeamSerializer(serializers.ModelSerializer):
@@ -16,6 +16,9 @@ class TeamSerializer(serializers.ModelSerializer):
     average_r6_score = serializers.FloatField()
     average_r7_score = serializers.FloatField()
     average_r8_score = serializers.FloatField()
+    first_place = serializers.IntegerField()
+    second_place = serializers.IntegerField()
+    third_place = serializers.IntegerField()
     games_played = serializers.IntegerField()
     average_percent_correct = serializers.FloatField(min_value=0.0000001)
     high_score = serializers.IntegerField()
@@ -49,6 +52,9 @@ class TeamViewSet(viewsets.ModelViewSet):
             average_r7_score=Avg('scores__r7_points_scored'),
             average_r8_score=Avg('scores__r8_points_scored'),
             games_played=Count('scores__quiz'),
+            first_place=Sum(Cast('scores__first_place', IntegerField())),
+            second_place=Sum(Cast('scores__second_place', IntegerField())),
+            third_place=Sum(Cast('scores__third_place', IntegerField())),
             average_percent_correct=average,
             high_score=Max('scores__total_points_scored')
         ).order_by('team_name')

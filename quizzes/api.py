@@ -13,4 +13,4 @@ class QuizSerializer(serializers.ModelSerializer):
 
 class QuizViewSet(viewsets.ModelViewSet):
     serializer_class = QuizSerializer
-    queryset = Quiz.objects.all()
+    queryset = Quiz.objects.all().order_by('-created_at')

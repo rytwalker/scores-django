@@ -23,6 +23,9 @@ class Score(models.Model):
     r8_points_scored = models.PositiveSmallIntegerField(default=0)
     round_jokered = models.PositiveSmallIntegerField(default=8)
     won_tiebreaker = models.BooleanField(blank=True)
+    first_place = models.BooleanField(blank=True, default=False)
+    second_place = models.BooleanField(blank=True, default=False)
+    third_place = models.BooleanField(blank=True, default=False)
 
     def __str__(self):
         return f"{str(self.team)} on {str(self.quiz)}"
