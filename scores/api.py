@@ -6,8 +6,7 @@ from quizzes.models import Quiz
 
 class ScoreSerializer(serializers.ModelSerializer):
     team = serializers.StringRelatedField(read_only=True)
-    # quiz = serializers.StringRelatedField(read_only=True)
-    quiz = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    quiz = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Score
