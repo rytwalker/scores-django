@@ -2,7 +2,6 @@ from django.db import models
 from uuid import uuid4
 from teams.models import Team
 from quizzes.models import Quiz
-# Create your models here.
 
 
 class Score(models.Model):
