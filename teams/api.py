@@ -3,7 +3,9 @@ from rest_framework.parsers import JSONParser
 from rest_framework import serializers, viewsets
 from .models import Team
 from scores.api import ScoreSerializer
-from django.db.models import Avg, Max, Min, Sum, Count
+from django.db.models.functions import Cast
+from django.db.models import Avg, Q, FloatField, Sum, Count
+# from django.db import models
 
 
 class TeamSerializer(serializers.ModelSerializer):
@@ -40,12 +42,13 @@ class LeaderboardViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all()
 
     def get_queryset(self):
-        total_points_scored = Sum('scores__total_points_scored')
-        total_points = Sum('scores__quiz__total_points')
+        total_points_scored = Cast(Sum(
+            'scores__total_points_scored'), FloatField())
+        total_points = Cast(Sum('scores__quiz__total_points'), FloatField())
+        # print(total_points)
         average = (total_points_scored / total_points) * 100
-        ordering = ('average_score')
         return Team.objects.annotate(
             average_score=Avg('scores__total_points_scored'),
             games_played=Count('scores__quiz'),
             average_percent_correct=average
-        ).order_by('-average_score')
+        ).filter(Q(games_played__gt=2)).order_by('-average_score')
