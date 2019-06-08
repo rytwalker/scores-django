@@ -20,13 +20,13 @@ from django.urls import path, include
 from rest_framework import routers
 from quizzes.api import QuizViewSet
 from scores.api import ScoreViewSet
-from teams.api import TeamViewSet
+from teams.api import TeamViewSet, LeaderboardViewSet
 
 router = routers.DefaultRouter()
 router.register('quizzes', QuizViewSet)
 router.register('scores', ScoreViewSet, basename="scores")
 router.register('teams', TeamViewSet)
-# router.register('leaderboard', LeaderboardViewSet)
+router.register('leaderboard', LeaderboardViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

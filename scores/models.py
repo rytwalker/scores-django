@@ -27,5 +27,8 @@ class Score(models.Model):
     second_place = models.BooleanField(blank=True, default=False)
     third_place = models.BooleanField(blank=True, default=False)
 
+    class Meta:
+        ordering = ['-quiz__created_at', '-total_points_scored']
+
     def __str__(self):
         return f"{str(self.team)} on {str(self.quiz)}"

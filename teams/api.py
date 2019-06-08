@@ -60,17 +60,29 @@ class TeamViewSet(viewsets.ModelViewSet):
         ).order_by('team_name')
 
 
-# class LeaderboardViewSet(viewsets.ModelViewSet):
-#     serializer_class = TeamSerializer
-#     queryset = Team.objects.all()
+class LeaderboardViewSet(viewsets.ModelViewSet):
+    serializer_class = TeamSerializer
+    queryset = Team.objects.all()
 
-#     def get_queryset(self):
-#         total_points_scored = Cast(Sum(
-#             'scores__total_points_scored'), FloatField())
-#         total_points = Cast(Sum('scores__quiz__total_points'), FloatField())
-#         average = (total_points_scored / total_points) * 100
-#         return Team.objects.annotate(
-#             average_score=Avg('scores__total_points_scored'),
-#             games_played=Count('scores__quiz'),
-#             average_percent_correct=average
-#         ).filter(Q(games_played__gt=2)).order_by('-average_score')
+    def get_queryset(self):
+        total_points_scored = Cast(Sum(
+            'scores__total_points_scored'), FloatField())
+        total_points = Cast(Sum('scores__quiz__total_points'), FloatField())
+        average = (total_points_scored / total_points) * 100
+        return Team.objects.annotate(
+            average_score=Avg('scores__total_points_scored'),
+            average_r1_score=Avg('scores__r1_points_scored'),
+            average_r2_score=Avg('scores__r2_points_scored'),
+            average_r3_score=Avg('scores__r3_points_scored'),
+            average_r4_score=Avg('scores__r4_points_scored'),
+            average_r5_score=Avg('scores__r5_points_scored'),
+            average_r6_score=Avg('scores__r6_points_scored'),
+            average_r7_score=Avg('scores__r7_points_scored'),
+            average_r8_score=Avg('scores__r8_points_scored'),
+            first_place=Sum(Cast('scores__first_place', IntegerField())),
+            second_place=Sum(Cast('scores__second_place', IntegerField())),
+            third_place=Sum(Cast('scores__third_place', IntegerField())),
+            games_played=Count('scores__quiz'),
+            average_percent_correct=average,
+            high_score=Max('scores__total_points_scored')
+        ).filter(Q(games_played__gt=2)).order_by('-average_score')
