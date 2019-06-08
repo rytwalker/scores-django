@@ -1,4 +1,10 @@
 from django.contrib import admin
 from .models import Team
-# Register your models here.
-admin.site.register(Team)
+
+
+class TeamAdmin(admin.ModelAdmin):
+    search_fields = ('team_name',)
+    ordering = ('team_name',)
+
+
+admin.site.register(Team, TeamAdmin)

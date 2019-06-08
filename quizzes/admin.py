@@ -1,4 +1,11 @@
 from django.contrib import admin
 from .models import Quiz
 # Register your models here.
-admin.site.register(Quiz)
+
+
+class QuizAdmin(admin.ModelAdmin):
+
+    ordering = ('-created_at', )
+
+
+admin.site.register(Quiz, QuizAdmin)
