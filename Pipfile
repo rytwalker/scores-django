@@ -11,6 +11,9 @@ python-decouple = "*"
 djangorestframework = "*"
 psycopg2 = "*"
 django-heroku = "*"
+django-cors-headers = "*"
+django-filter = "*"
+pytz = "*"
 
 [requires]
 python_version = "3.7"
