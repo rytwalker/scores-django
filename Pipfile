@@ -9,6 +9,8 @@ verify_ssl = true
 django = "*"
 python-decouple = "*"
 djangorestframework = "*"
+psycopg2 = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"
