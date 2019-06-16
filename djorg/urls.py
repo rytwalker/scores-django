@@ -25,7 +25,7 @@ from teams.api import TeamViewSet, LeaderboardViewSet
 router = routers.DefaultRouter()
 router.register('quizzes', QuizViewSet)
 router.register('scores', ScoreViewSet, basename="scores")
-router.register('teams', TeamViewSet)
+router.register('teams', TeamViewSet, basename="teams")
 router.register('leaderboard', LeaderboardViewSet)
 
 urlpatterns = [

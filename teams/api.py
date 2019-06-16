@@ -1,4 +1,5 @@
 from rest_framework import serializers, viewsets
+from rest_framework.filters import SearchFilter
 from .models import Team
 from scores.api import ScoreSerializer
 from django.db.models.functions import Cast
@@ -35,8 +36,11 @@ class TeamSerializer(serializers.ModelSerializer):
 class TeamViewSet(viewsets.ModelViewSet):
     serializer_class = TeamSerializer
     queryset = Team.objects.all()
+    filter_backends = [SearchFilter]
+    search_fields = ["team_name"]
 
     def get_queryset(self):
+
         total_points_scored = Cast(Sum(
             'scores__total_points_scored'), FloatField())
         total_points = Cast(Sum('scores__quiz__total_points'), FloatField())
